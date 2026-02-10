@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Suriya ❤️</title>
+
+<style>
+
+/* ---------------- BODY ---------------- */
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#ff003c,#001f54,#ff003c,#001f54);
+    background-size:400% 400%;
+    animation:bgmove 10s infinite alternate;
+    color:white;
+}
+
+@keyframes bgmove{
+    from{background-position:left;}
+    to{background-position:right;}
+}
+
+/* ---------------- CARD ---------------- */
+.card{
+    background:rgba(0,0,0,0.85);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    width:330px;
+    z-index:10;
+    box-shadow:0 0 40px rgba(255,0,90,.6);
+}
+
+/* ---------------- BUTTON ---------------- */
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+    background:linear-gradient(45deg,#ff003c,#00b4ff);
+    color:white;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* ---------------- IMAGE ---------------- */
+img{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+    border:4px solid #ff004c;
+}
+
+/* ---------------- HEARTS ---------------- */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* ---------------- FIREWORK ---------------- */
+.fire{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    animation:explode 1s forwards;
+}
+
+@keyframes explode{
+    from{transform:scale(1);opacity:1;}
+    to{transform:scale(10);opacity:0;}
+}
+
+/* hidden */
+.hidden{display:none;}
+
+#typing{
+    min-height:40px;
+    font-weight:bold;
+    font-size:18px;
+    margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div class="card" id="s1">
+    <h2>Hi Suriya ❤️</h2>
+    <button onclick="step2()">Open</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="card hidden" id="s2">
+    <h2>Happy Valentine's Day Mah ❤️💙</h2>
+    <button onclick="step3()">Surprise For You 🎁</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="card hidden" id="s3">
+
+    <!-- CHANGE PHOTO NAME HERE -->
+    <img src="photo.jpg">
+
+    <div id="typing"></div>
+
+</div>
+
+
+
+<script>
+
+/* ---------------- STEP FLOW ---------------- */
+function step2(){
+    s1.style.display="none";
+    s2.style.display="block";
+}
+
+function step3(){
+    s2.style.display="none";
+    s3.style.display="block";
+    startTyping();
+    fireworks();
+const photos = ["1.jpg","2.jpg","3.jpg","4.jpg"];
+
+let i = 0;
+
+setInterval(() => {
+    document.getElementById("slide").src = photos[i];
+    i = (i + 1) % photos.length;
+}, 2000);
+}
+
+
+/* ---------------- TYPING TEXT ---------------- */
+const text = "Love you mama ❤️ Thangoo chloooo 💙 You are my life forever Suriya 😘";
+
+let i=0;
+
+function startTyping(){
+    setInterval(()=>{
+        if(i < text.length){
+            typing.innerHTML += text[i];
+            i++;
+        }
+    },60);
+}
+
+
+/* ---------------- HEARTS ---------------- */
+function heart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=Math.random()>0.5?"❤️":"💙";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}
+setInterval(heart,250);
+
+
+/* ---------------- FIREWORKS ---------------- */
+function fireworks(){
+    setInterval(()=>{
+        const f=document.createElement("div");
+        f.className="fire";
+        f.style.left=Math.random()*100+"vw";
+        f.style.top=Math.random()*100+"vh";
+        f.style.background=Math.random()>0.5?"red":"blue";
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),1000);
+    },300);
+}
+
+</script>
+
+</body>
+</html>
